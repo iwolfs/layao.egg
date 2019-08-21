@@ -24,8 +24,13 @@
       </div>
     </div>
   {% endblock %}
+
   {% block body %} <div>No body</div> {% endblock %}
-  {% block footer %} {% endblock %}
+
+  {% block footer %} 
+    {% include "./footer.tpl" %} 
+  {% endblock %}
+
   {% block bottom %} {% endblock %}
 </body>
 </html>
