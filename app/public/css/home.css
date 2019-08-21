@@ -1,0 +1,51 @@
+
+
+
+.swiper-container {
+  width: 100%;
+  /* height: 100%; */
+  height: 760px;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+}
+
+.home-about{
+  padding: 50px;
+  overflow: hidden;
+}
+.home-about .about-left,.home-about .about-right {
+  width: 50%;
+  padding: 20px 30px;
+}
+.home-about .about-left {
+  float: left;
+  padding-top: 50px;
+  font-size: 18px;
+  line-height: 1.75;
+  text-indent: 2em;
+}
+.home-about .about-right {
+  float: right;
+}
+
