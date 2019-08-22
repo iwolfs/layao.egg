@@ -15,6 +15,8 @@
 {% block body %}
 {{banner.html()}}
 {% include "./about.tpl" %}
+{% include "./case.tpl" %}
+{% include "./select.tpl" %}
 {% endblock %}
 
 

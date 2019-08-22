@@ -8,7 +8,7 @@ class HomeController extends Controller {
     const { ctx } = this;
     // ctx.body = 'hi, egg';
     const dataSource = await ctx.service.home.index();
-    await ctx.render('home/index.tpl', {navs: dataSource.NavDataSource});
+    await ctx.render('home/index.tpl', {navs: dataSource.NavDataSource, cases: dataSource.CaseDataSource});
   }
 }
 
