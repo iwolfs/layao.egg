@@ -23,6 +23,19 @@ module.exports = appInfo => {
     },
   };
 
+  // config.nunjucks = {
+  //   此处不安全，建议用 {{ htmlStr | safe}} 代替
+  //   autoescape: false
+  // };
+
+  config.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1:27017/layao',
+      options: {},
+      // plugins: [],
+    }
+  };
+
   // add your middleware config here
   config.middleware = [];
 
