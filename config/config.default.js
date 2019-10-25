@@ -28,13 +28,13 @@ module.exports = appInfo => {
   //   autoescape: false
   // };
 
-  // config.mongoose = {
-  //   client: {
-  //     url: 'mongodb://127.0.0.1:27017/layao',
-  //     options: {},
-  //     // plugins: [],
-  //   }
-  // };
+  config.mongoose = {
+    client: {
+      url: 'mongodb://127.0.0.1:27017/layao',
+      options: {},
+      // plugins: [],
+    }
+  };
 
   // add your middleware config here
   config.middleware = [];
