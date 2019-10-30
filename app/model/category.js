@@ -10,6 +10,11 @@ module.exports = app => {
       type: String,
       require: true,
     },
+    type: {
+      type: Number,
+      enum: [0, 1, 2], // 0 未分类，1 产品，2 案例
+      default: 0,
+    },
     status: {
       type: Number,
       enum: [1, 2], //1 正常， 2 关闭

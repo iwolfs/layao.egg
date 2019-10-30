@@ -13,6 +13,9 @@ module.exports = app => {
     summary: {
       type: String,
     },
+    cover: {
+      type: String,
+    },
     content: {
       type: String,
     },

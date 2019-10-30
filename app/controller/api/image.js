@@ -5,6 +5,11 @@ const fs = require('fs');
 const path = require('path');
 const pump = require('mz-modules/pump')
 
+const formatNumber = n => {
+    n = n.toString();
+    return n[1] ? n : `0${n}`;
+}
+
 class ImageController extends Controller {
     async upload () {
         const {ctx, service} = this
@@ -16,15 +21,21 @@ class ImageController extends Controller {
             while ((stream = await parts()) != null) {
                 const filename = stream.filename.toLowerCase();
                 const timestamp = Date.now();
-                const fileDir = path.resolve('app/public/upload');
+                const saveFilename = `${timestamp}_${filename}`;
+                const d = new Date();
+                const year = d.getFullYear();
+                const month = d.getMonth() + 1;
+                const day = d.getDate();
+                const fileDirName = [year,month,day].map(formatNumber).join('.');
+                const fileDir = path.resolve(`app/public/upload/${fileDirName}`);
                 if (!fs.existsSync(fileDir)) {
                     const isCreateDir = fs.mkdirSync(fileDir)
                 }
                 // const target = path.join(this.config.baseDir, 'app/public/img', `${timestamp}_${filename}`)
-                const target = path.join(fileDir, `${timestamp}_${filename}`)
+                const target = path.join(fileDir, saveFilename)
                 const writeStream = fs.createWriteStream(target)
                 await pump(stream, writeStream)
-                files.push({name : filename, url : "/public/upload/" + `${timestamp}_${filename}`})
+                files.push({name : filename, url : `/public/upload/${fileDirName}/` + saveFilename})
             }
             // return ctx.body = '{"status":"ok", "msg": "upload success"}'
             const resultData = {

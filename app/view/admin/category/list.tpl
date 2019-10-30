@@ -21,6 +21,7 @@
               <tr>
                 <th>ID</th>
                 <th>名称</th>
+                <th>通道</th>
                 <th>状态</th>
                 <th>创建时间</th>
                 <th>操作</th>
@@ -41,6 +42,7 @@
     <script type="text/javascript" src="/public/admin/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/public/admin/js/plugins/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">
+    const channels = {{channelsStr | safe}}
     $('#sampleTable').DataTable({
       //表示翻页时是否显示 processing信息（正在加载中），这个信息可以修改
       processing: true,
@@ -77,6 +79,10 @@
       columns: [
           { data: '_id'},
           { data: 'name'},
+          { data: 'type', render: function(data, type, row) { 
+            const channel = channels.find(c => c._id === data) || {_id: 0, name: '未分类'}
+            return channel.name;
+          }},
           { data: 'status'},
           { data: 'createAt', render: function(data, type, row) { return moment(data).format('YYYY-MM-DD HH:mm')}},
           { data: '', render: function(data, type, row) {

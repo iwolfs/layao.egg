@@ -21,6 +21,18 @@
             <div class="col-md-6">
                 <form>
                   <div class="form-group">
+                    <label for="exampleSelect1">通道</label>
+                    <select class="form-control" id="exampleSelect1" name="type" value="{{category.type}}">
+                      {% for channel in channels %}
+                        {% if channel._id === category.type %}
+                          <option value="{{channel._id}}" selected>{{channel.name}}</option>
+                        {% else %}
+                          <option value="{{channel._id}}">{{channel.name}}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label class="control-label">类别名称</label>
                     <input class="form-control" type="text" name="name" value="{{category.name}}" placeholder="请输入类别名称">
                   </div>

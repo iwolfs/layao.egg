@@ -16,14 +16,17 @@ class CategoryController extends Controller {
   async create() {
     const { ctx } = this;
     const name = ctx.request.body.name;
-    return ctx.body = await ctx.service.api.category.create(name);
+    const type = ctx.request.body.type || 0;
+    return ctx.body = await ctx.service.api.category.create(name, type);
   }
 
   async update() {
     const { ctx } = this;
     const _id = ctx.params._id;
     const name = ctx.request.body.name;
+    const type = ctx.request.body.type;
     const updateContent = {
+      type,
       name,
       updateBy: Date.now(),
     }

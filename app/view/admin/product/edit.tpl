@@ -37,33 +37,39 @@
                     <input class="form-control" type="text" name="title" value="{{product.title}}" placeholder="请输入产品名称">
                   </div>
                   <div class="form-group">
-                    <label for="coverInputFile">产品内容</label>
+                    <label class="control-label">产品描述</label>
+                    <textarea class="form-control" name="summary" rows="4" placeholder="请输入产品描述">{{product.summary}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="coverInputFile" class="control-label">产品封面</label>
+                    <input class="form-control" id="coverInputFile" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">请选择上传封面</small>
+                    <input type="hidden" id="coverHiddenFile" name="cover" value="{{product.cover}}">
+                    <span class="img-thumbnail"><img id="coverImg" src="{{product.cover}}" /></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="content">产品内容</label>
                     <div id="content">{{product.content | safe}}</div>
                   </div>
                   <div class="form-group">
-                    <label for="coverInputFile">File input</label>
-                    <input class="form-control-file" id="coverInputFile" name="file" type="file" aria-describedby="fileHelp"><small class="form-text text-muted" id="fileHelp">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                    <label class="control-label">状态</label>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="status" value="1" {{'checked' if product.status === 1 else 'null'}}>发布
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="status" value="2" {{'checked' if product.status === 2 else 'null'}}>关闭
+                      </label>
+                    </div>
                   </div>
-                  {# <div class="form-group">
-                    <label class="control-label">Gender</label>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender">Male
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gender">Female
-                      </label>
-                    </div>
-                  </div> #}
                   <index type="hidden" name="_id" value="{{_id}}" />
                 </form>
               </div>
           </div>
         </div>
         <div class="tile-footer">
-          <button id="btn-submit" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>保存</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="/admin/product"><i class="fa fa-fw fa-lg fa-times-circle"></i>取消</a>
+          <button id="btn-submit" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>保存</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="/admin/product"><i class="fa fa-fw fa-lg fa-times-circle"></i>返回</a>
         </div>
       </div>
     </div>
@@ -161,7 +167,6 @@
 
       $('#coverInputFile').change(function(e) {
         const file = e.target.files[0]
-        console.log(file)
 
         const fieldArr = $('form').serializeArray();
         const fields = getFormFields()
@@ -181,7 +186,15 @@
           success: function(data){
               console.log(data);
               if (data.status == 'ok') {
-                  alert('上传成功！');
+                  //alert('上传成功！');
+                  const url = data.data[0].url;
+                  $('#coverHiddenFile').val(url);
+                  $('#coverImg').attr({src: url});
+                  $.notify({
+                    title: '',
+                    message: '上传成功！',
+                    icon: 'fa fa-check' 
+                  });
               }
 
           },

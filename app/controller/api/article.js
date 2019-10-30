@@ -22,21 +22,31 @@ class ArticleController extends Controller {
 
   async create() {
     const { ctx } = this;
-    const title = ctx.request.body.title;
     const category = ctx.request.body.category;
-    return ctx.body = await ctx.service.api.article.create({title, category});
+    const title = ctx.request.body.title;
+    const summary = ctx.request.body.summary;
+    const cover = ctx.request.body.cover;
+    const content = ctx.request.body.content;
+    const status = ctx.request.body.status;
+    return ctx.body = await ctx.service.api.article.create({title, summary, cover, category, content, status});
   }
 
   async update() {
     const { ctx } = this;
     const _id = ctx.params._id;
-    const title = ctx.request.body.title;
     const category = ctx.request.body.category;
+    const title = ctx.request.body.title;
+    const summary = ctx.request.body.summary;
+    const cover = ctx.request.body.cover;
     const content = ctx.request.body.content;
+    const status = ctx.request.body.status;
     const updateContent = {
-      title,
       category,
+      title,
+      summary,
+      cover,
       content,
+      status,
       updateBy: Date.now(),
     }
     return ctx.body = await ctx.service.api.article.update(_id, updateContent)

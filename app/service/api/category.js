@@ -2,8 +2,8 @@ const Service = require('egg').Service;
 
 class CategoryService extends Service {
 
-  async find() {
-    return await this.ctx.model.Category.find();
+  async find(condition) {
+    return await this.ctx.model.Category.find(condition);
   }
 
   async findOne(condition) {
@@ -14,10 +14,10 @@ class CategoryService extends Service {
     return await this.ctx.model.Category.findById(_id);
   }
 
-  async create(name) {
+  async create(name, type) {
     const { ctx } = this;
     const _id = await ctx.service.api.counter.getNextSequenceValue('categoryId');
-    return await ctx.model.Category.create({_id, name});
+    return await ctx.model.Category.create({_id, name, type});
   }
 
   async update(_id, content) {
