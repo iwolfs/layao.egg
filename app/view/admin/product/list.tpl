@@ -1,3 +1,4 @@
+{% set currMenu = {main: 'product', sub: 'list'} %}
 {% extends "../layout/_layout.tpl" %}
 
 {% block body%}
@@ -52,8 +53,8 @@
           //封装请求参数
           var param = {};
           param.pageSize = data.length;       //页面显示记录条数，在页面显示每页显示多少项的时候
-          param.pageIndex = data.start + 1;   //开始的记录序号
-          console.log(param);
+          param.pageIndex = Math.ceil(data.start / 2 + 1);   //开始的记录序号
+          //console.log(param);
           $.ajax({
               type: 'get',
               url: '/api/article',
@@ -61,12 +62,13 @@
               data: param,
               dataType: 'json',
               success: function(res) {
+                const articleData = res.data || {}
                   setTimeout( function () {
                       var out = {};
                       out.draw = data.draw;
-                      out.recordsTotal = res.total;
-                      out.recordsFiltered = res.total;
-                      out.data =  res.list;
+                      out.recordsTotal = articleData.total;
+                      out.recordsFiltered = articleData.total;
+                      out.data =  articleData.list;
                       callback( out );
                   }, 50 );
               },

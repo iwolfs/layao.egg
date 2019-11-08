@@ -3,6 +3,9 @@ module.exports = app => {
   const Schema = mongoose.Schema;
 
   const UserSchema = new Schema({
+    _id: {
+      type: Number,
+    },
     userName: {
       type: String,
       required: true,
@@ -16,7 +19,7 @@ module.exports = app => {
     },
     role: {
       type: Number,
-      enum: [1, 2], // 1 管理员， 2普 通用户
+      enum: [1, 2], // 1 管理员， 2 普通用户
       default: 1
     },
     status: {
@@ -39,5 +42,5 @@ module.exports = app => {
     }
   }, { versionKey: false });
 
-  return mongoose.modal('User', UserSchema, 'user');
+  return mongoose.model('User', UserSchema, 'user');
 }

@@ -36,8 +36,14 @@ module.exports = appInfo => {
     }
   };
 
+  config.jwt = {
+    secret: 'egg-api-jwt',
+  };
+
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [
+    // 'jwt', // 加上后会对所有路由进行拦截验证
+  ];
 
   // add your user config here
   const userConfig = {

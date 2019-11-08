@@ -1,3 +1,4 @@
+{% set currMenu = {main: 'category', sub: 'list'} %}
 {% extends "../layout/_layout.tpl" %}
 
 {% block body%}
@@ -59,6 +60,7 @@
               type: 'get',
               url: '/api/category',
               cache: false,  //禁用缓存
+              headers: {authorization: cookie.get('authorization')},
               data: param,
               dataType: 'json',
               success: function(res) {

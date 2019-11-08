@@ -2,8 +2,17 @@ const Service = require('egg').Service;
 
 class ArticleService extends Service {
 
-  async find() {
-    return await this.ctx.model.Article.find();
+  async find(params) {
+    let { pageIndex, pageSize, ...condition } = {...params};
+    pageIndex = pageIndex ? Number(pageIndex) : 1;
+    pageSize = pageSize ? Number(pageSize) : 10;
+    console.log('pageIndex', pageIndex)
+    const total = await this.ctx.model.Article.countDocuments(condition);
+    const list = await this.ctx.model.Article.find(condition)
+      .skip((pageIndex - 1) * pageSize)
+      .limit(pageSize)
+      .sort({publishAt: -1, createAt: -1});
+    return {total, pageIndex, pageSize, list};
   }
 
   async findOne(condition) {

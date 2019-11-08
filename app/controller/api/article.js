@@ -6,10 +6,12 @@ class ArticleController extends Controller {
   async index() {
     const { ctx } = this;
     // return ctx.body = await ctx.service.api.article.find();
-    const list = ctx.body = await ctx.service.api.article.find();
+    const params = ctx.request.query;
+    delete params._ // 移除系统自带参数
+    const articleData = ctx.body = await ctx.service.api.article.find(ctx.request.query);
     return ctx.body = {
-      list,
-      total: list.length,
+      success: true,
+      data: articleData,
     }
   }
 

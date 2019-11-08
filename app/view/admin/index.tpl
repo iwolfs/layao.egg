@@ -1,6 +1,7 @@
+{% set currMenu = {main: 'home', sub: 'home'} %}
+{% set pageTitle = 'This is Index Page' %}
 {% extends "./layout/_layout.tpl" %}
 
 {% block body%}
-  {% set myTitle = 'This is Index Page' %}
-  index page: {{ myTitle }}
+  index page: {{ pageTitle }} {{pageName}}
 {% endblock %}

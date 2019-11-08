@@ -1,3 +1,4 @@
+{% set currMenu = {main: 'category', sub: 'edit'} %}
 {% extends "../layout/_layout.tpl" %}
 
 {% block body%}
@@ -88,6 +89,7 @@
         $.ajax({
           url: apiUrl,
           type: ajaxType,
+          headers: {authorization: cookie.get('authorization')},
           data: fields,
         }).done(function(data) {
           $.notify({

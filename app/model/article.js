@@ -36,6 +36,9 @@ module.exports = app => {
       type: Number,
       default: Date.now,
     },
+    publishAt: {
+      type: Number,
+    },
     updateAt: {
       type: Number
     },

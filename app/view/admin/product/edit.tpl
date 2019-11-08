@@ -1,3 +1,4 @@
+{% set currMenu = {main: 'product', sub: 'edit'} %}
 {% extends "../layout/_layout.tpl" %}
 
 {% block body%}
@@ -101,6 +102,7 @@
             url: `/api/upload?_csrf=${fields['_csrf']}`,
             dataType:'json',
             type:'post',
+            headers: {authorization: cookie.get('authorization')},
             data: formData,
             processData : false, // 使数据不做处理
             contentType : false, // 不要设置Content-Type请求头
@@ -152,6 +154,7 @@
         $.ajax({
           url: apiUrl,
           type: ajaxType,
+          headers: {authorization: cookie.get('authorization')},
           data: fields,
         }).done(function(data) {
           $.notify({
@@ -180,6 +183,7 @@
           url: `/api/upload?_csrf=${fields['_csrf']}`,
           dataType:'json',
           type:'post',
+          headers: {authorization: cookie.get('authorization')},
           data: formData,
           processData : false, // 使数据不做处理
           contentType : false, // 不要设置Content-Type请求头
