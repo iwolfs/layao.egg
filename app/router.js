@@ -12,6 +12,8 @@ module.exports = app => {
   
   router.get('/', controller.home.index);
   router.get('/case', controller.case.list);
+  router.get('/product', controller.product.list);
+  router.get('/product/:_id', controller.product.getProduct);
   router.get('/about', controller.about.index);
   router.get('/contact', controller.contact.list);
   router.get('/news', controller.news.list);
