@@ -14,7 +14,7 @@ body {
   color:#191919;
   margin: 0;
   padding: 0;
- 
+  background-color: #f9f9f9;
 }
 body,div,ul,li {
   box-sizing: border-box;

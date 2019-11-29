@@ -23,6 +23,9 @@ module.exports = app => {
   router.get('/admin/product', userAuth, controller.admin.product.index);
   router.get('/admin/product/edit', userAuth, controller.admin.product.edit);
   router.get('/admin/product/edit/:_id', userAuth, controller.admin.product.edit);
+  router.get('/admin/case', userAuth, controller.admin.case.index);
+  router.get('/admin/case/edit', userAuth, controller.admin.case.edit);
+  router.get('/admin/case/edit/:_id', userAuth, controller.admin.case.edit);
   router.get('/admin/category', userAuth, controller.admin.category.index);
   router.get('/admin/category/edit', userAuth, controller.admin.category.edit);
   router.get('/admin/category/edit/:_id', userAuth, controller.admin.category.edit);
@@ -45,4 +48,6 @@ module.exports = app => {
   // router.get('/api/user/add', controller.api.user.create);
   router.post('/api/user/signin', controller.api.user.signin);
   router.post('/api/upload', jwt, controller.api.file.upload);
+
+  router.get('/api/city', controller.api.city.find);
 };

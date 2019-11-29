@@ -21,6 +21,22 @@
       path: '/admin/product'
     }]
   }, {
+    name: 'case',
+    label: '案例',
+    icon: 'star',
+    path: '',
+    children: [{
+      name: 'edit',
+      label: '添加案例',
+      icon: 'circle-o',
+      path: '/admin/case/edit'
+    },{
+      name: 'list',
+      label: '案例列表',
+      icon: 'circle-o',
+      path: '/admin/case'
+    }]
+  }, {
     name: 'category',
     label: '类别',
     icon: 'clone',

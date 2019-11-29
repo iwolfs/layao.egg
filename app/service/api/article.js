@@ -3,10 +3,16 @@ const Service = require('egg').Service;
 class ArticleService extends Service {
 
   async find(params) {
-    let { pageIndex, pageSize, ...condition } = {...params};
+    let { pageIndex, pageSize, channel, ...query } = {...params};
     pageIndex = pageIndex ? Number(pageIndex) : 1;
     pageSize = pageSize ? Number(pageSize) : 10;
-    console.log('pageIndex', pageIndex)
+    let condition = {...query};
+    if (Number(channel)) {
+      const categories = await this.ctx.model.Category.find({type: channel});
+      const categoryIds = categories.map(item => item._id);
+      condition = { ...query, category: {$in: categoryIds} };
+      console.log('pageIndex', pageIndex, categoryIds)
+    }
     const total = await this.ctx.model.Article.countDocuments(condition);
     const list = await this.ctx.model.Article.find(condition)
       .skip((pageIndex - 1) * pageSize)
