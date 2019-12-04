@@ -1,7 +1,7 @@
 .about {
-  margin: 80px 0;
+  padding: 80px 0;
   overflow: hidden;
-  background-color: rgba(0,0,0,.5);
+  /* background-color: rgba(0,0,0,.5); */
 }
 .about-left,.about-right {
   width: 50%;
@@ -15,7 +15,8 @@
 .about-right {
   float: right;
   padding: 20px 50px;
-  color: white;
+  /* color: white; */
+  color: #191919;
 }
 .about-title {
   padding: 30px 0;

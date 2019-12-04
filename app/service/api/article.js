@@ -11,7 +11,7 @@ class ArticleService extends Service {
       const categories = await this.ctx.model.Category.find({type: channel});
       const categoryIds = categories.map(item => item._id);
       condition = { ...query, category: {$in: categoryIds} };
-      console.log('pageIndex', pageIndex, categoryIds)
+      // console.log('pageIndex', pageIndex, categoryIds)
     }
     const total = await this.ctx.model.Article.countDocuments(condition);
     const list = await this.ctx.model.Article.find(condition)

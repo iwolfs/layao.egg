@@ -18,7 +18,9 @@
       {% for item in products.list %}
       <li class="product-item">
         <div class="product-item-box">
-          <a href="/product/{{item.id}}"><img src={{item.cover}} alt={{item.title}}></a>
+          <div class="product-cover">
+            <a href="/product/{{item.id}}"><img src={{item.cover}} alt={{item.title}}></a>
+          </div>
           <div class="product-title"><a href="/product/{{item.id}}">{{item.title}}</a></div>
         </div>
       </li>

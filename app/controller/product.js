@@ -1,14 +1,15 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const { Channel } = require('../common/enums');
 
 
 class ProductController extends Controller {
   async list() {
     const { ctx } = this;
-    const dataSource = await ctx.service.api.article.find();
-    console.log('products', dataSource)
-    await ctx.render('product/list.tpl', {navs: dataSource.NavDataSource, products: dataSource});
+    const params = {channel: Channel.PRODUCT}
+    const dataSource = await ctx.service.api.article.find(params);
+    await ctx.render('product/list.tpl', {products: dataSource});
   }
 
   async getProduct() {

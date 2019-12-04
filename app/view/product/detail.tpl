@@ -2,7 +2,7 @@
 {% extends "../common/_app.tpl" %}
 
 {% block title %}
-<title>产品 - 上海莱耀照明科技有限公司</title>
+<title>{{product.title}} - 上海莱耀照明科技有限公司</title>
 {% endblock %}
 
 {% block css %}
