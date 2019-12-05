@@ -26,6 +26,18 @@
       </li>
       {% endfor %}
     </ul>
+    <div class="pagination-container">
+      <ul class="pagination">
+        <li>First</li>
+        <li>Previous</li>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>Next</li>
+        <li>Last</li>
+      </ul>
+    </div>
   </div>
 </div>
 {% endblock %}
